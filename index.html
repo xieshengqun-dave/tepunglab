@@ -13,7 +13,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #F8F8F8; }
     ::-webkit-scrollbar { width: 0; }
-    .app { max-width: 430px; margin: 0 auto; min-height: 100vh; background: white; position: relative; }
+    .app { max-width: 430px; margin: 0 auto; min-height: 100vh; background: white; position: relative; padding-bottom: 100px; }
     
     .loading-screen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #1B1B3A, #0F0F23); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
     .loading-logo { width: 80px; height: 100px; object-fit: contain; margin-bottom: 20px; }
@@ -52,6 +52,22 @@
     .stat-value { font-size: 15px; font-weight: 700; color: #1B1B3A; display: flex; justify-content: space-between; align-items: center; }
     .tier-badge { background: linear-gradient(135deg, #C9A66B, #8B7355); color: white; font-size: 9px; padding: 3px 6px; border-radius: 8px; font-weight: 600; }
     
+    /* Active Orders Section */
+    .active-orders-section { padding: 0 20px; margin-bottom: 20px; }
+    .active-order-card { background: linear-gradient(135deg, #1B1B3A, #2A2A4A); border-radius: 16px; padding: 16px; margin-bottom: 12px; color: white; }
+    .active-order-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .active-order-number { font-size: 14px; opacity: 0.7; }
+    .active-order-status { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+    .active-order-status.pending { background: #FF9800; }
+    .active-order-status.preparing { background: #2196F3; }
+    .active-order-status.ready { background: #4CAF50; }
+    .pickup-number-big { font-size: 48px; font-weight: 700; color: #F5DEB3; text-align: center; margin: 10px 0; }
+    .pickup-label { text-align: center; font-size: 12px; opacity: 0.7; }
+    .active-order-items { font-size: 13px; opacity: 0.8; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .active-order-store { font-size: 12px; opacity: 0.7; margin-top: 8px; display: flex; align-items: center; gap: 6px; }
+    .ready-message { background: #4CAF50; color: white; padding: 10px; border-radius: 10px; text-align: center; font-weight: 600; margin-top: 12px; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    
     .order-type-section { padding: 0 20px; margin-bottom: 20px; }
     .order-type-cards { display: flex; gap: 14px; }
     .order-type-card { flex: 1; background: white; border: 2px solid #E5E5E5; border-radius: 18px; padding: 16px 12px; text-align: center; cursor: pointer; position: relative; }
@@ -67,7 +83,7 @@
     .location-info { flex: 1; min-width: 0; }
     .location-label { font-size: 10px; color: #666; }
     .location-value { font-size: 13px; font-weight: 600; color: #1B1B3A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .location-value.placeholder { color: #E07B54; }
+    .location-value.empty { color: #FF9800; }
     .location-change { color: #E07B54; font-size: 12px; font-weight: 600; background: none; border: none; }
     
     .promo-section { padding: 0 20px; margin-bottom: 20px; }
@@ -81,19 +97,17 @@
     .section-title { font-size: 17px; font-weight: 700; color: #1B1B3A; }
     .see-all { color: #E07B54; font-size: 13px; font-weight: 600; background: none; border: none; cursor: pointer; }
     
-    .categories-scroll { display: flex; gap: 12px; padding: 0 20px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 20px; }
+    .categories-scroll { display: flex; gap: 12px; padding: 0 20px 20px; overflow-x: auto; }
     .category-item { display: flex; flex-direction: column; align-items: center; min-width: 65px; cursor: pointer; }
     .category-icon { width: 55px; height: 55px; background: #F5F0E8; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 6px; }
     .category-name { font-size: 11px; color: #1B1B3A; font-weight: 500; }
     
-    .popular-scroll { display: flex; gap: 12px; padding: 0 20px 120px; overflow-x: auto; }
+    .popular-scroll { display: flex; gap: 12px; padding: 0 20px 30px; overflow-x: auto; }
     .popular-card { min-width: 140px; background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.08); cursor: pointer; }
     .popular-img { width: 100%; height: 90px; background: linear-gradient(135deg, #1B1B3A, #2A2A4A); display: flex; align-items: center; justify-content: center; font-size: 36px; }
     .popular-info { padding: 10px; }
     .popular-name { font-size: 13px; font-weight: 600; color: #1B1B3A; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .popular-price { font-size: 13px; font-weight: 700; color: #E07B54; }
-    
-    .content { padding-bottom: 120px; }
     
     .menu-header { padding: 20px; background: white; position: sticky; top: 0; z-index: 10; }
     .search-bar { display: flex; align-items: center; background: #F5F5F5; border-radius: 12px; padding: 11px 14px; gap: 10px; }
@@ -104,7 +118,7 @@
     .menu-tab.active { background: #1B1B3A; color: #F5DEB3; }
     .menu-tab:not(.active) { background: #F5F5F5; color: #666; }
     
-    .menu-list { padding: 20px; padding-bottom: 120px; }
+    .menu-list { padding: 20px; padding-bottom: 30px; }
     .menu-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid #F0F0F0; }
     .menu-item:last-child { border-bottom: none; }
     .menu-item-img { width: 72px; height: 72px; background: linear-gradient(135deg, #1B1B3A, #2A2A4A); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
@@ -116,7 +130,7 @@
     .add-btn { width: 34px; height: 34px; border-radius: 50%; background: #E07B54; color: white; border: none; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .unavailable-badge { background: #E5E5E5; color: #999; font-size: 11px; padding: 4px 8px; border-radius: 8px; }
     
-    .gift-section { padding: 20px; padding-bottom: 120px; }
+    .gift-section { padding: 20px; }
     .gift-card-display { background: linear-gradient(135deg, #1B1B3A, #2A2A4A); border-radius: 20px; padding: 22px; color: white; margin-bottom: 20px; }
     .gift-card-logo { width: 45px; height: 56px; object-fit: contain; margin-bottom: 14px; }
     .gift-card-label { font-size: 11px; opacity: 0.7; margin-bottom: 4px; }
@@ -133,7 +147,7 @@
     .rewards-label { font-size: 13px; opacity: 0.7; margin-bottom: 6px; }
     .rewards-value { font-size: 42px; font-weight: 700; margin-bottom: 6px; }
     .rewards-tier { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 16px; font-size: 13px; }
-    .rewards-content { margin-top: -55px; padding: 0 20px 120px; }
+    .rewards-content { margin-top: -55px; padding: 0 20px 20px; }
     .rewards-progress-card { background: white; border-radius: 18px; padding: 18px; margin-bottom: 18px; box-shadow: 0 3px 12px rgba(0,0,0,0.08); }
     .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .progress-title { font-size: 13px; font-weight: 600; color: #1B1B3A; }
@@ -156,7 +170,7 @@
     .account-details { color: white; }
     .account-name { font-size: 18px; font-weight: 700; margin-bottom: 3px; }
     .account-email { font-size: 13px; opacity: 0.7; }
-    .account-content { padding: 20px; padding-bottom: 120px; }
+    .account-content { padding: 20px; }
     .account-section { background: white; border-radius: 14px; margin-bottom: 14px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
     .account-section-title { font-size: 11px; color: #999; font-weight: 600; padding: 14px 14px 6px; text-transform: uppercase; }
     .account-item { display: flex; align-items: center; gap: 12px; padding: 14px; border-bottom: 1px solid #F5F5F5; cursor: pointer; }
@@ -165,6 +179,31 @@
     .account-item-text { flex: 1; font-size: 14px; color: #1B1B3A; }
     .account-item-arrow { color: #CCC; font-size: 16px; }
     .logout-btn { width: 100%; padding: 14px; background: #FFF5F5; color: #E07B54; border: none; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; }
+    
+    .subpage-header { display: flex; align-items: center; gap: 14px; padding: 20px; background: white; border-bottom: 1px solid #F0F0F0; }
+    .back-btn { width: 36px; height: 36px; border-radius: 10px; background: #F5F5F5; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .subpage-title { font-size: 18px; font-weight: 700; color: #1B1B3A; }
+    .subpage-content { padding: 20px; }
+    
+    .order-card { background: white; border-radius: 14px; padding: 16px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .order-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .order-number { font-size: 16px; font-weight: 700; color: #1B1B3A; }
+    .order-status { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+    .order-status.pending { background: #FFF3E0; color: #FF9800; }
+    .order-status.preparing { background: #E3F2FD; color: #2196F3; }
+    .order-status.ready { background: #E8F5E9; color: #4CAF50; }
+    .order-status.completed { background: #F5F5F5; color: #666; }
+    .order-items-list { font-size: 13px; color: #666; margin-bottom: 8px; }
+    .order-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid #F0F0F0; }
+    .order-total { font-size: 15px; font-weight: 700; color: #E07B54; }
+    .order-date { font-size: 12px; color: #999; }
+    
+    .address-card { background: white; border-radius: 14px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; gap: 12px; }
+    .address-icon { width: 40px; height: 40px; background: #F5F5F5; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .address-info { flex: 1; }
+    .address-label { font-size: 13px; font-weight: 600; color: #1B1B3A; margin-bottom: 4px; }
+    .address-text { font-size: 13px; color: #666; }
+    .add-address-btn { width: 100%; padding: 14px; background: #E07B54; color: white; border: none; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 10px; }
     
     .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: white; padding: 8px 0 22px; display: flex; justify-content: space-around; border-top: 1px solid #F0F0F0; z-index: 100; }
     .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; padding: 6px 10px; background: none; border: none; }
@@ -218,37 +257,6 @@
     .modal-title { font-size: 19px; font-weight: 700; color: #1B1B3A; margin-bottom: 6px; }
     .modal-text { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.5; }
     .modal-btn { padding: 12px 28px; background: #E07B54; color: white; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; }
-    .order-number { font-size: 36px; font-weight: 700; color: #E07B54; margin: 10px 0; }
-    
-    .orders-list { padding-bottom: 20px; }
-    .order-card { background: white; border-radius: 14px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-    .order-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .order-id { font-weight: 700; color: #1B1B3A; }
-    .order-status { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
-    .order-status.pending { background: #FFF3E0; color: #FF9800; }
-    .order-status.preparing { background: #E3F2FD; color: #2196F3; }
-    .order-status.ready { background: #E8F5E9; color: #4CAF50; }
-    .order-status.completed { background: #F5F5F5; color: #999; }
-    .order-items { font-size: 13px; color: #666; margin-bottom: 8px; }
-    .order-footer { display: flex; justify-content: space-between; font-size: 12px; color: #999; }
-    .order-total { font-weight: 600; color: #1B1B3A; }
-    
-    .address-card { background: white; border-radius: 14px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); display: flex; gap: 12px; align-items: flex-start; }
-    .address-icon { width: 40px; height: 40px; background: #F5F5F5; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-    .address-info { flex: 1; }
-    .address-label { font-size: 12px; color: #E07B54; font-weight: 600; margin-bottom: 4px; }
-    .address-text { font-size: 14px; color: #1B1B3A; }
-    .address-actions { display: flex; gap: 8px; }
-    .address-action-btn { padding: 6px 12px; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; }
-    .address-action-btn.edit { background: #F5F5F5; color: #1B1B3A; }
-    .address-action-btn.delete { background: #FFE5E5; color: #E07B54; }
-    
-    .add-address-btn { width: 100%; padding: 14px; background: white; border: 2px dashed #E5E5E5; border-radius: 14px; color: #E07B54; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    
-    .subpage-header { background: white; padding: 16px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #F0F0F0; position: sticky; top: 0; z-index: 10; }
-    .back-btn { background: none; border: none; font-size: 22px; cursor: pointer; padding: 0; }
-    .subpage-title { font-size: 18px; font-weight: 700; color: #1B1B3A; }
-    .subpage-content { padding: 20px; padding-bottom: 40px; }
     
     .empty-state { text-align: center; padding: 50px 20px; color: #999; }
     .empty-icon { font-size: 50px; margin-bottom: 12px; opacity: 0.5; }
@@ -296,7 +304,7 @@
       user: null, userProfile: null, currentPage: 'home', subPage: null, orderType: 'pickup',
       selectedStore: defaultStores[0], deliveryAddress: '', cart: [],
       menuData: {}, promos: [], stores: defaultStores, rewards: defaultRewards,
-      menuCategory: 'coffee', userOrders: [], userAddresses: []
+      menuCategory: 'coffee', userOrders: [], userAddresses: [], activeOrders: []
     };
 
     async function initData() {
@@ -305,20 +313,43 @@
       db.collection('settings').doc('stores').onSnapshot(doc => { if (doc.exists) { state.stores = doc.data().items || defaultStores; state.selectedStore = state.stores[0]; } });
     }
 
-    async function loadUserOrders() {
+    // Real-time listener for user's active orders
+    function setupOrdersListener() {
       if (!state.user) return;
-      db.collection('orders').where('userId', '==', state.user.uid).orderBy('createdAt', 'desc').limit(50).onSnapshot(snap => {
-        state.userOrders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-        if (state.subPage === 'orders') render();
-      });
+      
+      // Listen to all orders for this user (no composite index needed)
+      db.collection('orders')
+        .where('userId', '==', state.user.uid)
+        .onSnapshot(snap => {
+          const allOrders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          
+          // Sort by createdAt client-side
+          allOrders.sort((a, b) => {
+            const aTime = a.createdAt?.toDate?.() || new Date(0);
+            const bTime = b.createdAt?.toDate?.() || new Date(0);
+            return bTime - aTime;
+          });
+          
+          // Active orders (not completed)
+          state.activeOrders = allOrders.filter(o => o.status !== 'completed').slice(0, 5);
+          
+          // All orders for history
+          state.userOrders = allOrders;
+          
+          // Re-render if on home page or orders subpage
+          if (state.currentPage === 'home' && !state.subPage) render();
+          if (state.subPage === 'orders') renderSubPage();
+        }, err => {
+          console.error('Orders listener error:', err);
+        });
     }
 
     async function loadUserAddresses() {
       if (!state.user) return;
-      db.collection('users').doc(state.user.uid).collection('addresses').orderBy('createdAt', 'desc').onSnapshot(snap => {
+      try {
+        const snap = await db.collection('users').doc(state.user.uid).collection('addresses').get();
         state.userAddresses = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-        if (state.subPage === 'addresses') render();
-      });
+      } catch(e) { console.error('Error loading addresses:', e); }
     }
 
     async function loadUserProfile(uid) {
@@ -344,10 +375,12 @@
           state.user = user;
           state.userProfile = await loadUserProfile(user.uid);
           if (!state.userProfile) state.userProfile = await createUserProfile(user);
-          loadUserOrders();
-          loadUserAddresses();
+          setupOrdersListener();
+          await loadUserAddresses();
           hideLoading(); render();
-        } else { state.user = null; state.userProfile = null; hideLoading(); showLogin(); }
+        } else {
+          state.user = null; state.userProfile = null; hideLoading(); showLogin();
+        }
       });
     }
 
@@ -430,9 +463,14 @@
     function closeCart() { document.getElementById('cartOverlay').classList.remove('show'); document.getElementById('cartSheet').classList.remove('show'); }
 
     function renderCartSheet() {
-      const el = document.getElementById('cartItems'), sum = document.getElementById('cartSummary'), btn = document.getElementById('checkoutBtn');
+      const el = document.getElementById('cartItems');
+      const sum = document.getElementById('cartSummary');
+      const btn = document.getElementById('checkoutBtn');
       if (!el) return;
-      if (state.cart.length === 0) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">🛒</div><div class="empty-text">Cart empty</div></div>'; if (sum) sum.classList.add('hidden'); if (btn) btn.disabled = true; return; }
+      if (state.cart.length === 0) {
+        el.innerHTML = '<div class="empty-state"><div class="empty-icon">🛒</div><div class="empty-text">Cart empty</div></div>';
+        if (sum) sum.classList.add('hidden'); if (btn) btn.disabled = true; return;
+      }
       el.innerHTML = state.cart.map(i => `<div class="cart-item"><div class="cart-item-img">${i.image}</div><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-price">RM ${(i.price*i.qty).toFixed(2)}</div></div><div class="qty-controls"><button class="qty-btn" onclick="removeFromCart('${i.id}')">−</button><span class="qty-num">${i.qty}</span><button class="qty-btn" onclick="addToCart('${i.id}')">+</button></div></div>`).join('');
       const sub = getCartTotal(), tax = sub * 0.06, total = sub + tax;
       if (sum) { sum.classList.remove('hidden'); sum.innerHTML = `<div class="summary-row"><span>Subtotal</span><span>RM ${sub.toFixed(2)}</span></div><div class="summary-row"><span>SST (6%)</span><span>RM ${tax.toFixed(2)}</span></div><div class="summary-row"><span>Total</span><span>RM ${total.toFixed(2)}</span></div>`; }
@@ -440,64 +478,103 @@
     }
 
     async function handleCheckout() {
-      // Check delivery address
+      // Validate delivery address
       if (state.orderType === 'delivery' && !state.deliveryAddress.trim()) {
         closeCart();
-        showModal('📍', 'Address Required', 'Please enter your delivery address first!');
-        setTimeout(() => openAddressForm(), 500);
+        setTimeout(() => { openAddressForm(); showModal('📍', 'Address Required', 'Please enter your delivery address first!'); }, 300);
         return;
       }
 
-      const sub = getCartTotal(), tax = sub * 0.06, total = sub + tax, pts = Math.floor(total * 10);
-      const pickupNumber = state.orderType === 'pickup' ? generatePickupNumber() : null;
+      const btn = document.getElementById('checkoutBtn');
+      btn.disabled = true;
+      btn.textContent = 'Placing order...';
 
-      const orderData = {
-        userId: state.user.uid, userName: state.userProfile?.name || 'Guest',
-        items: state.cart.map(i => ({ id: i.id, name: i.name, price: i.price, qty: i.qty, image: i.image })),
-        subtotal: sub, tax, total, orderType: state.orderType, status: 'pending',
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      };
+      try {
+        const sub = getCartTotal(), tax = sub * 0.06, total = sub + tax, pts = Math.floor(total * 10);
+        const pickupNumber = state.orderType === 'pickup' ? generatePickupNumber() : null;
 
-      if (state.orderType === 'pickup') {
-        orderData.pickupNumber = pickupNumber;
-        orderData.store = state.selectedStore;
-      } else {
-        orderData.deliveryAddress = state.deliveryAddress;
-      }
+        const orderData = {
+          userId: state.user.uid,
+          userName: state.userProfile?.name || 'Guest',
+          items: state.cart.map(i => ({ id: i.id, name: i.name, price: i.price, qty: i.qty, image: i.image })),
+          subtotal: sub, tax, total,
+          orderType: state.orderType,
+          status: 'pending',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
 
-      await db.collection('orders').add(orderData);
-      await updateUserProfile({ points: (state.userProfile?.points || 0) + pts });
-      state.cart = []; closeCart(); updateCartFab();
+        if (state.orderType === 'pickup') {
+          orderData.pickupNumber = pickupNumber;
+          orderData.store = state.selectedStore;
+        } else {
+          orderData.deliveryAddress = state.deliveryAddress;
+        }
 
-      if (state.orderType === 'pickup') {
-        showModal('✅', 'Order Placed!', `<div style="color:#999;margin-bottom:5px">Your pickup number</div><div class="order-number">${pickupNumber}</div><div style="margin-top:10px">${state.selectedStore?.name}</div><div style="margin-top:15px;color:#666">You earned ${pts} points!</div>`);
-      } else {
-        showModal('✅', 'Order Placed!', `<div style="margin-bottom:10px">Delivering to:</div><div style="font-weight:600;color:#1B1B3A">${state.deliveryAddress}</div><div style="margin-top:15px;color:#666">You earned ${pts} points!</div>`);
+        await db.collection('orders').add(orderData);
+        await updateUserProfile({ points: (state.userProfile?.points || 0) + pts });
+
+        state.cart = [];
+        closeCart();
+        updateCartFab();
+
+        if (state.orderType === 'pickup') {
+          showModal('✅', 'Order Placed!', `
+            <div style="margin:15px 0">
+              <div style="font-size:13px;color:#999">Your Pickup Number</div>
+              <div style="font-size:56px;font-weight:700;color:#E07B54;line-height:1.2">${pickupNumber}</div>
+              <div style="font-size:13px;color:#666;margin-top:8px">📍 ${state.selectedStore?.name || 'Store'}</div>
+            </div>
+            <div style="font-size:13px;color:#666">You earned ${pts} points! 🎉</div>
+            <div style="font-size:12px;color:#999;margin-top:10px">Check order status on Home screen</div>
+          `);
+        } else {
+          showModal('✅', 'Order Placed!', `
+            <div style="margin:10px 0">
+              <div style="font-size:13px;color:#999">Delivering to</div>
+              <div style="font-size:14px;color:#1B1B3A;font-weight:600;margin-top:5px">${state.deliveryAddress}</div>
+            </div>
+            <div style="font-size:13px;color:#666;margin-top:15px">You earned ${pts} points! 🎉</div>
+            <div style="font-size:12px;color:#999;margin-top:10px">Check order status on Home screen</div>
+          `);
+        }
+      } catch(e) {
+        console.error('Checkout error:', e);
+        showModal('❌', 'Error', 'Failed to place order. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Place Order';
       }
     }
 
     function showLogin() {
-      document.getElementById('app').innerHTML = `<div class="auth-page"><img src="${LOGO_BASE64}" class="auth-logo"><h1 class="auth-title">Welcome Back!</h1><p class="auth-subtitle">Sign in to continue</p><div class="auth-form"><div class="auth-error" id="loginError"></div><div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="loginEmail" placeholder="your@email.com"></div><div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" id="loginPassword" placeholder="Password" onkeypress="if(event.key==='Enter')handleEmailLogin()"></div><button class="auth-btn" onclick="handleEmailLogin()">Sign In</button><div class="divider"><div class="divider-line"></div><span class="divider-text">or</span><div class="divider-line"></div></div><button class="social-btn" onclick="handleGoogleLogin()">🔵 Continue with Google</button><p class="auth-link">No account? <a onclick="showRegister()">Register</a></p></div><div style="height:100px"></div><div style="height:100px"></div></div>`;
+      document.getElementById('app').innerHTML = `<div class="auth-page"><img src="${LOGO_BASE64}" class="auth-logo"><h1 class="auth-title">Welcome Back!</h1><p class="auth-subtitle">Sign in to continue</p><div class="auth-form"><div class="auth-error" id="loginError"></div><div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="loginEmail" placeholder="your@email.com"></div><div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" id="loginPassword" placeholder="Password" onkeypress="if(event.key==='Enter')handleEmailLogin()"></div><button class="auth-btn" onclick="handleEmailLogin()">Sign In</button><div class="divider"><div class="divider-line"></div><span class="divider-text">or</span><div class="divider-line"></div></div><button class="social-btn" onclick="handleGoogleLogin()">🔵 Continue with Google</button><p class="auth-link">No account? <a onclick="showRegister()">Register</a></p></div></div>`;
     }
 
     function showRegister() {
-      document.getElementById('app').innerHTML = `<div class="auth-page"><img src="${LOGO_BASE64}" class="auth-logo"><h1 class="auth-title">Join Tepung Lab</h1><p class="auth-subtitle">Create account to earn rewards</p><div class="auth-form"><div class="auth-error" id="registerError"></div><div class="form-group"><label class="form-label">Name *</label><input type="text" class="form-input" id="regName" placeholder="Full name"></div><div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-input" id="regEmail" placeholder="your@email.com"></div><div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" id="regPhone" placeholder="012 345 6789"></div><div class="form-group"><label class="form-label">Password *</label><input type="password" class="form-input" id="regPassword" placeholder="Min 6 characters"></div><button class="auth-btn" onclick="handleRegister()">Create Account</button><p class="auth-link">Have account? <a onclick="showLogin()">Sign In</a></p></div><div style="height:100px"></div><div style="height:100px"></div></div>`;
+      document.getElementById('app').innerHTML = `<div class="auth-page"><img src="${LOGO_BASE64}" class="auth-logo"><h1 class="auth-title">Join Tepung Lab</h1><p class="auth-subtitle">Create account to earn rewards</p><div class="auth-form"><div class="auth-error" id="registerError"></div><div class="form-group"><label class="form-label">Name *</label><input type="text" class="form-input" id="regName" placeholder="Full name"></div><div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-input" id="regEmail" placeholder="your@email.com"></div><div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" id="regPhone" placeholder="012 345 6789"></div><div class="form-group"><label class="form-label">Password *</label><input type="password" class="form-input" id="regPassword" placeholder="Min 6 characters"></div><button class="auth-btn" onclick="handleRegister()">Create Account</button><p class="auth-link">Have account? <a onclick="showLogin()">Sign In</a></p></div></div>`;
     }
 
-    function showModal(icon, title, text) { document.getElementById('modalIcon').textContent = icon; document.getElementById('modalTitle').textContent = title; document.getElementById('modalText').innerHTML = text; document.getElementById('modalOverlay').classList.add('show'); document.getElementById('modal').classList.add('show'); }
+    function showModal(icon, title, text) {
+      document.getElementById('modalIcon').innerHTML = icon;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalText').innerHTML = text;
+      document.getElementById('modalOverlay').classList.add('show');
+      document.getElementById('modal').classList.add('show');
+    }
     function closeModal() { document.getElementById('modalOverlay').classList.remove('show'); document.getElementById('modal').classList.remove('show'); }
+
     function switchPage(p) { state.currentPage = p; state.subPage = null; render(); }
-    function showSubPage(p) { state.subPage = p; render(); }
-    function closeSubPage() { state.subPage = null; render(); }
     function goToMenu(cat) { state.menuCategory = cat; state.currentPage = 'menu'; render(); }
-    function setMenuCategory(cat) { state.menuCategory = cat; document.getElementById('menuList').innerHTML = renderMenuList(); document.querySelectorAll('.menu-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === cat)); }
+    function setMenuCategory(cat) { state.menuCategory = cat; const el = document.getElementById('menuList'); if (el) el.innerHTML = renderMenuList(); document.querySelectorAll('.menu-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === cat)); }
     function selectOrderType(t) { state.orderType = t; render(); }
     function openStoreSelector() { document.getElementById('storeOverlay').classList.add('show'); document.getElementById('storeSheet').classList.add('show'); }
     function closeStoreSelector() { document.getElementById('storeOverlay').classList.remove('show'); document.getElementById('storeSheet').classList.remove('show'); }
     function selectStore(id) { state.selectedStore = state.stores.find(s => s.id === id); closeStoreSelector(); render(); }
-    function openAddressForm() { document.getElementById('addressOverlay').classList.add('show'); document.getElementById('addressSheet').classList.add('show'); document.getElementById('addressInput').value = state.deliveryAddress; }
+    function openAddressForm() { document.getElementById('addressOverlay').classList.add('show'); document.getElementById('addressSheet').classList.add('show'); }
     function closeAddressForm() { document.getElementById('addressOverlay').classList.remove('show'); document.getElementById('addressSheet').classList.remove('show'); }
     function saveAddress() { state.deliveryAddress = document.getElementById('addressInput').value.trim(); closeAddressForm(); render(); }
+
+    function showSubPage(page) { state.subPage = page; render(); }
+    function closeSubPage() { state.subPage = null; render(); }
 
     async function handleCheckin() {
       const last = localStorage.getItem('tl_checkin'), today = new Date().toDateString();
@@ -515,38 +592,43 @@
     async function addNewAddress() {
       const label = document.getElementById('newAddrLabel').value.trim() || 'Home';
       const addr = document.getElementById('newAddrText').value.trim();
-      if (!addr) { alert('Please enter an address'); return; }
-      await db.collection('users').doc(state.user.uid).collection('addresses').add({ label, address: addr, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+      if (!addr) { alert('Enter address'); return; }
+      await db.collection('users').doc(state.user.uid).collection('addresses').add({ label, address: addr });
+      await loadUserAddresses();
       closeNewAddrSheet();
+      renderSubPage();
     }
 
     async function deleteAddress(id) {
-      if (!confirm('Delete this address?')) return;
+      if (!confirm('Delete?')) return;
       await db.collection('users').doc(state.user.uid).collection('addresses').doc(id).delete();
+      state.userAddresses = state.userAddresses.filter(a => a.id !== id);
+      renderSubPage();
     }
 
     function openNewAddrSheet() { document.getElementById('newAddrOverlay').classList.add('show'); document.getElementById('newAddrSheet').classList.add('show'); }
-    function closeNewAddrSheet() { document.getElementById('newAddrOverlay').classList.remove('show'); document.getElementById('newAddrSheet').classList.remove('show'); document.getElementById('newAddrLabel').value = ''; document.getElementById('newAddrText').value = ''; }
+    function closeNewAddrSheet() { document.getElementById('newAddrOverlay').classList.remove('show'); document.getElementById('newAddrSheet').classList.remove('show'); }
 
     function render() {
-      if (state.subPage) { document.getElementById('app').innerHTML = renderSubPage(); return; }
+      if (state.subPage) { renderSubPage(); return; }
       document.getElementById('app').innerHTML = renderPage() + renderNav() + renderFab() + renderOverlays();
       updateCartFab();
     }
 
     function renderSubPage() {
+      let html = '';
       if (state.subPage === 'orders') {
-        return `<div class="subpage-header"><button class="back-btn" onclick="closeSubPage()">←</button><span class="subpage-title">Order History</span></div><div class="subpage-content orders-list">${state.userOrders.length === 0 ? '<div class="empty-state"><div class="empty-icon">📦</div><div class="empty-text">No orders yet</div></div>' : state.userOrders.map(o => {
-          const d = o.createdAt?.toDate?.() || new Date();
+        html = `<div class="subpage-header"><button class="back-btn" onclick="closeSubPage()">←</button><span class="subpage-title">Order History</span></div><div class="subpage-content">${state.userOrders.length === 0 ? '<div class="empty-state"><div class="empty-icon">📦</div><div class="empty-text">No orders yet</div></div>' : state.userOrders.map(o => {
+          const date = o.createdAt?.toDate ? o.createdAt.toDate() : new Date();
           const items = o.items?.map(i => `${i.qty}x ${i.name}`).join(', ') || '-';
-          return `<div class="order-card"><div class="order-header"><span class="order-id">#${o.id.slice(-6).toUpperCase()}${o.pickupNumber ? ' • Pickup #' + o.pickupNumber : ''}</span><span class="order-status ${o.status}">${o.status?.toUpperCase() || 'PENDING'}</span></div><div class="order-items">${items}</div><div class="order-footer"><span>${d.toLocaleDateString()} ${d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</span><span class="order-total">RM ${(o.total||0).toFixed(2)}</span></div><div style="height:100px"></div><div style="height:100px"></div></div>`;
-        }).join('')}<div style="height:100px"></div><div style="height:100px"></div></div>`;
+          return `<div class="order-card"><div class="order-card-header"><span class="order-number">${o.pickupNumber ? '#' + o.pickupNumber : '#' + o.id.slice(-6).toUpperCase()}</span><span class="order-status ${o.status || 'pending'}">${(o.status || 'pending').toUpperCase()}</span></div><div class="order-items-list">${items}</div><div class="order-card-footer"><span class="order-date">${date.toLocaleDateString()} ${date.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</span><span class="order-total">RM ${(o.total || 0).toFixed(2)}</span></div></div>`;
+        }).join('')}</div>`;
+      } else if (state.subPage === 'addresses') {
+        html = `<div class="subpage-header"><button class="back-btn" onclick="closeSubPage()">←</button><span class="subpage-title">Saved Addresses</span></div><div class="subpage-content">${state.userAddresses.length === 0 ? '<div class="empty-state"><div class="empty-icon">📍</div><div class="empty-text">No saved addresses</div></div>' : state.userAddresses.map(a => `<div class="address-card"><div class="address-icon">📍</div><div class="address-info"><div class="address-label">${a.label || 'Address'}</div><div class="address-text">${a.address}</div></div><button style="background:#FFE5E5;color:#E07B54;border:none;padding:8px 12px;border-radius:8px;font-size:12px;cursor:pointer" onclick="deleteAddress('${a.id}')">Delete</button></div>`).join('')}<button class="add-address-btn" onclick="openNewAddrSheet()">+ Add New Address</button></div>
+        <div class="overlay" id="newAddrOverlay" onclick="closeNewAddrSheet()"></div>
+        <div class="sheet" id="newAddrSheet"><div class="sheet-header"><h2 class="sheet-title">New Address</h2><button class="sheet-close" onclick="closeNewAddrSheet()">×</button></div><div class="form-group"><label class="form-label">Label</label><input type="text" class="address-input" id="newAddrLabel" placeholder="Home, Office..."></div><div class="form-group"><label class="form-label">Full Address</label><textarea class="address-input" id="newAddrText" rows="3" placeholder="Enter address"></textarea></div><button class="save-btn" onclick="addNewAddress()">Save</button></div>`;
       }
-      if (state.subPage === 'addresses') {
-        return `<div class="subpage-header"><button class="back-btn" onclick="closeSubPage()">←</button><span class="subpage-title">Saved Addresses</span></div><div class="subpage-content">${state.userAddresses.length === 0 ? '<div class="empty-state"><div class="empty-icon">📍</div><div class="empty-text">No saved addresses</div></div>' : state.userAddresses.map(a => `<div class="address-card"><div class="address-icon">📍</div><div class="address-info"><div class="address-label">${a.label || 'Address'}</div><div class="address-text">${a.address}</div></div><button class="address-action-btn delete" onclick="deleteAddress('${a.id}')">Delete</button></div>`).join('')}<button class="add-address-btn" onclick="openNewAddrSheet()">+ Add New Address</button>
-        <div class="overlay" id="newAddrOverlay" onclick="closeNewAddrSheet()"></div><div class="sheet" id="newAddrSheet"><div class="sheet-header"><h2 class="sheet-title">New Address</h2><button class="sheet-close" onclick="closeNewAddrSheet()">×</button></div><div class="form-group"><label class="form-label">Label</label><input type="text" class="address-input" id="newAddrLabel" placeholder="Home, Office..."></div><div class="form-group"><label class="form-label">Full Address</label><textarea class="address-input" id="newAddrText" rows="3" placeholder="Enter your address"></textarea></div><button class="save-btn" onclick="addNewAddress()">Save Address</button></div><div style="height:100px"></div><div style="height:100px"></div></div>`;
-      }
-      return '';
+      document.getElementById('app').innerHTML = html;
     }
 
     function renderPage() {
@@ -560,6 +642,28 @@
       }
     }
 
+    function renderActiveOrders() {
+      if (state.activeOrders.length === 0) return '';
+      
+      return `<div class="section-header"><h2 class="section-title">📋 Active Orders</h2></div>
+      <div class="active-orders-section">${state.activeOrders.map(o => {
+        const statusLabels = { pending: 'PENDING', preparing: 'PREPARING', ready: '🎉 READY!' };
+        const items = o.items?.map(i => `${i.qty}x ${i.name}`).join(', ') || '';
+        
+        return `<div class="active-order-card">
+          <div class="active-order-header">
+            <span class="active-order-number">Order #${o.id.slice(-6).toUpperCase()}</span>
+            <span class="active-order-status ${o.status}">${statusLabels[o.status] || o.status}</span>
+          </div>
+          ${o.pickupNumber ? `<div class="pickup-label">Your Pickup Number</div><div class="pickup-number-big">${o.pickupNumber}</div>` : ''}
+          ${o.status === 'ready' ? `<div class="ready-message">✅ Your order is ready for pickup!</div>` : ''}
+          <div class="active-order-items">${items}</div>
+          ${o.store ? `<div class="active-order-store">📍 ${o.store.name}</div>` : ''}
+          ${o.deliveryAddress ? `<div class="active-order-store">🏠 ${o.deliveryAddress}</div>` : ''}
+        </div>`;
+      }).join('')}</div>`;
+    }
+
     function renderHome() {
       const tier = getTierInfo(), pts = state.userProfile?.points || 0, bal = state.userProfile?.balance || 0;
       const popular = Object.values(state.menuData).flat().filter(i => i.popular).slice(0, 6);
@@ -567,24 +671,27 @@
       const needsAddr = state.orderType === 'delivery' && !state.deliveryAddress;
 
       return `<div class="page active"><div class="header"><div class="header-top"><div class="greeting">${getGreeting()}, ${state.userProfile?.name?.split(' ')[0] || 'Guest'}!</div><button class="daily-checkin" onclick="handleCheckin()">Daily Check-in</button></div></div>
+      
+      ${renderActiveOrders()}
+      
       <div class="stats-row"><div class="stat-card"><div class="stat-label">TL Balance</div><div class="stat-value">RM ${bal.toFixed(2)} 💳</div></div><div class="stat-card"><div class="stat-label"><span class="tier-badge">${tier.name}</span></div><div class="stat-value">${pts}/${tier.target||'∞'} 🏆</div></div><div class="stat-card"><div class="stat-label">Points</div><div class="stat-value">${pts} ⭐</div></div></div>
       <div class="order-type-section"><div class="order-type-cards"><div class="order-type-card ${state.orderType==='delivery'?'selected':''}" onclick="selectOrderType('delivery')"><div class="order-type-title">DELIVERY</div><div class="order-type-emoji">🛵</div><div class="order-type-desc">To your door</div></div><div class="order-type-card ${state.orderType==='pickup'?'selected':''}" onclick="selectOrderType('pickup')"><div class="order-type-title">PICKUP</div><div class="order-type-emoji">🏪</div><div class="order-type-desc">Ready on arrival</div></div></div></div>
-      ${state.orderType==='pickup'?`<div class="location-bar" onclick="openStoreSelector()"><span class="location-icon">📍</span><div class="location-info"><div class="location-label">Pickup from</div><div class="location-value">${state.selectedStore?.name||'Select store'}</div></div><button class="location-change">Change</button></div>`:`<div class="location-bar ${needsAddr?'warning':''}" onclick="openAddressForm()"><span class="location-icon">🏠</span><div class="location-info"><div class="location-label">Deliver to</div><div class="location-value ${needsAddr?'placeholder':''}">${state.deliveryAddress||'⚠️ Enter address'}</div></div><button class="location-change">${needsAddr?'Add':'Edit'}</button></div>`}
+      ${state.orderType==='pickup'?`<div class="location-bar" onclick="openStoreSelector()"><span class="location-icon">📍</span><div class="location-info"><div class="location-label">Pickup from</div><div class="location-value">${state.selectedStore?.name||'Select'}</div></div><button class="location-change">Change</button></div>`:`<div class="location-bar ${needsAddr?'warning':''}" onclick="openAddressForm()"><span class="location-icon">🏠</span><div class="location-info"><div class="location-label">Deliver to</div><div class="location-value ${needsAddr?'empty':''}">${state.deliveryAddress||'⚠️ Enter address'}</div></div><button class="location-change">${needsAddr?'Add':'Edit'}</button></div>`}
       ${activePromos.length?`<div class="promo-section"><div class="promo-scroll">${activePromos.map(p=>`<div class="promo-banner" style="background:linear-gradient(135deg,${p.color||'#E07B54'},${p.color||'#E07B54'}DD)"><div class="promo-tag">${p.time||'NOW'}</div><div class="promo-title">${p.title}</div><div class="promo-desc">${p.desc}</div></div>`).join('')}</div></div>`:''}
       <div class="section-header"><h2 class="section-title">Categories</h2></div>
       <div class="categories-scroll"><div class="category-item" onclick="goToMenu('coffee')"><div class="category-icon">☕</div><div class="category-name">Coffee</div></div><div class="category-item" onclick="goToMenu('tea')"><div class="category-icon">🫖</div><div class="category-name">Tea</div></div><div class="category-item" onclick="goToMenu('pastry')"><div class="category-icon">🥐</div><div class="category-name">Pastry</div></div><div class="category-item" onclick="goToMenu('cakoi')"><div class="category-icon">🥖</div><div class="category-name">Cakoi</div></div><div class="category-item" onclick="goToMenu('meals')"><div class="category-icon">🍚</div><div class="category-name">Meals</div></div></div>
-      ${popular.length?`<div class="section-header"><h2 class="section-title">Popular 🔥</h2><button class="see-all" onclick="switchPage('menu')">See All</button></div><div class="popular-scroll">${popular.map(i=>`<div class="popular-card" onclick="addToCart('${i.id}')"><div class="popular-img">${i.image}</div><div class="popular-info"><div class="popular-name">${i.name}</div><div class="popular-price">RM ${i.price.toFixed(2)}</div></div></div>`).join('')}</div>`:''}<div style="height:100px"></div><div style="height:100px"></div></div>`;
+      ${popular.length?`<div class="section-header"><h2 class="section-title">Popular 🔥</h2><button class="see-all" onclick="switchPage('menu')">See All</button></div><div class="popular-scroll">${popular.map(i=>`<div class="popular-card" onclick="addToCart('${i.id}')"><div class="popular-img">${i.image}</div><div class="popular-info"><div class="popular-name">${i.name}</div><div class="popular-price">RM ${i.price.toFixed(2)}</div></div></div>`).join('')}</div>`:''}<div style="height:100px"></div></div>`;
     }
 
     function renderMenu() {
       const cats = Object.keys(state.menuData);
       const labels = {coffee:'☕ Coffee',tea:'🫖 Tea',pastry:'🥐 Pastry',cakoi:'🥖 Cakoi',meals:'🍚 Meals'};
-      return `<div class="page active"><div class="menu-header"><div class="search-bar"><span>🔍</span><input type="text" placeholder="Search..." oninput="handleSearch(this.value)"></div></div><div class="menu-tabs">${cats.map(c=>`<button class="menu-tab ${state.menuCategory===c?'active':''}" data-cat="${c}" onclick="setMenuCategory('${c}')">${labels[c]||c}</button>`).join('')}</div><div class="menu-list" id="menuList">${renderMenuList()}</div><div style="height:100px"></div><div style="height:100px"></div></div>`;
+      return `<div class="page active"><div class="menu-header"><div class="search-bar"><span>🔍</span><input type="text" placeholder="Search..." oninput="handleSearch(this.value)"></div></div><div class="menu-tabs">${cats.map(c=>`<button class="menu-tab ${state.menuCategory===c?'active':''}" data-cat="${c}" onclick="setMenuCategory('${c}')">${labels[c]||c}</button>`).join('')}</div><div class="menu-list" id="menuList">${renderMenuList()}</div></div>`;
     }
 
     function renderMenuList() {
       const items = state.menuData[state.menuCategory] || [];
-      if (!items.length) return '<div class="empty-state"><div class="empty-icon">🍽️</div><div class="empty-text">No items</div></div>';
+      if (items.length === 0) return '<div class="empty-state"><div class="empty-icon">🍽️</div><div class="empty-text">No items</div></div>';
       return items.map(i => `<div class="menu-item"><div class="menu-item-img">${i.image}</div><div class="menu-item-info"><div class="menu-item-name">${i.name}</div><div class="menu-item-desc">${i.desc||''}</div><div class="menu-item-bottom"><div class="menu-item-price">RM ${i.price.toFixed(2)}</div>${i.available!==false?`<button class="add-btn" onclick="addToCart('${i.id}')">+</button>`:`<span class="unavailable-badge">Unavailable</span>`}</div></div></div>`).join('');
     }
 
@@ -599,21 +706,22 @@
 
     function renderRewards() {
       const tier = getTierInfo(), pts = state.userProfile?.points || 0;
-      return `<div class="page active"><div class="rewards-header"><div class="rewards-points"><div class="rewards-label">Your Points</div><div class="rewards-value">${pts}</div><div class="rewards-tier">🏆 ${tier.name}</div></div></div><div class="rewards-content"><div class="rewards-progress-card"><div class="progress-header"><span class="progress-title">${tier.next?`To ${tier.next}`:'Max!'}</span><span class="progress-count">${pts}/${tier.target||'∞'}</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${Math.min(tier.progress,100)}%"></div></div><div class="progress-hint">${tier.next?`${tier.target-pts} more`:'Top tier! 👑'}</div></div><div class="rewards-grid">${state.rewards.map(r=>`<div class="reward-card"><div class="reward-icon">${r.icon}</div><div class="reward-name">${r.name}</div><div class="reward-pts">${r.pts} pts</div><button class="reward-btn ${pts>=r.pts?'available':'locked'}" ${pts>=r.pts?`onclick="redeemReward('${r.id}')"`:''}>  ${pts>=r.pts?'Redeem':'🔒'}</button></div>`).join('')}</div></div><div style="height:100px"></div><div style="height:100px"></div></div>`;
+      return `<div class="page active"><div class="rewards-header"><div class="rewards-points"><div class="rewards-label">Your Points</div><div class="rewards-value">${pts}</div><div class="rewards-tier">🏆 ${tier.name}</div></div></div><div class="rewards-content"><div class="rewards-progress-card"><div class="progress-header"><span class="progress-title">${tier.next?`To ${tier.next}`:'Max!'}</span><span class="progress-count">${pts}/${tier.target||'∞'}</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${Math.min(tier.progress,100)}%"></div></div><div class="progress-hint">${tier.next?`${tier.target-pts} more`:'Top tier! 👑'}</div></div><div class="rewards-grid">${state.rewards.map(r=>`<div class="reward-card"><div class="reward-icon">${r.icon}</div><div class="reward-name">${r.name}</div><div class="reward-pts">${r.pts} pts</div><button class="reward-btn ${pts>=r.pts?'available':'locked'}" ${pts>=r.pts?`onclick="redeemReward('${r.id}')"`:''}>  ${pts>=r.pts?'Redeem':'🔒'}</button></div>`).join('')}</div></div></div>`;
     }
 
     function renderAccount() {
-      return `<div class="page active"><div class="account-header"><div class="account-info"><div class="account-avatar">${getUserInitials()}</div><div class="account-details"><div class="account-name">${state.userProfile?.name||'Guest'}</div><div class="account-email">${state.user?.email||''}</div></div></div></div><div class="account-content"><div class="account-section"><div class="account-section-title">Account</div><div class="account-item" onclick="showSubPage('orders')"><div class="account-item-icon">📦</div><div class="account-item-text">Order History</div><div class="account-item-arrow">›</div></div><div class="account-item" onclick="showSubPage('addresses')"><div class="account-item-icon">📍</div><div class="account-item-text">Saved Addresses</div><div class="account-item-arrow">›</div></div></div><div class="account-section"><div class="account-section-title">Support</div><div class="account-item"><div class="account-item-icon">❓</div><div class="account-item-text">Help Center</div><div class="account-item-arrow">›</div></div></div><button class="logout-btn" onclick="handleLogout()">Sign Out</button></div><div style="height:100px"></div><div style="height:100px"></div></div>`;
+      return `<div class="page active"><div class="account-header"><div class="account-info"><div class="account-avatar">${getUserInitials()}</div><div class="account-details"><div class="account-name">${state.userProfile?.name||'Guest'}</div><div class="account-email">${state.user?.email||''}</div></div></div></div><div class="account-content"><div class="account-section"><div class="account-section-title">Account</div><div class="account-item" onclick="showSubPage('orders')"><div class="account-item-icon">📦</div><div class="account-item-text">Order History</div><div class="account-item-arrow">›</div></div><div class="account-item" onclick="showSubPage('addresses')"><div class="account-item-icon">📍</div><div class="account-item-text">Saved Addresses</div><div class="account-item-arrow">›</div></div></div><div class="account-section"><div class="account-section-title">Support</div><div class="account-item"><div class="account-item-icon">❓</div><div class="account-item-text">Help</div><div class="account-item-arrow">›</div></div></div><button class="logout-btn" onclick="handleLogout()">Sign Out</button></div></div>`;
     }
 
     function renderNav() { return `<div class="bottom-nav">${[{id:'home',icon:'🏠',label:'Home'},{id:'menu',icon:'📋',label:'Menu'},{id:'gift',icon:'💳',label:'Gift'},{id:'rewards',icon:'⭐',label:'Rewards'},{id:'account',icon:'👤',label:'Account'}].map(t=>`<button class="nav-item ${state.currentPage===t.id?'active':''}" onclick="switchPage('${t.id}')"><span class="nav-icon">${t.icon}</span><span class="nav-label">${t.label}</span></button>`).join('')}</div>`; }
+
     function renderFab() { return `<button class="cart-fab" id="cartFab" onclick="openCart()">🛒<span class="cart-badge" id="cartBadge">0</span></button>`; }
 
     function renderOverlays() {
       return `<div class="overlay" id="cartOverlay" onclick="closeCart()"></div><div class="sheet" id="cartSheet"><div class="sheet-header"><h2 class="sheet-title">Cart</h2><button class="sheet-close" onclick="closeCart()">×</button></div><div class="cart-items" id="cartItems"></div><div class="cart-summary hidden" id="cartSummary"></div><button class="checkout-btn" id="checkoutBtn" onclick="handleCheckout()" disabled>Place Order</button></div>
       <div class="overlay" id="storeOverlay" onclick="closeStoreSelector()"></div><div class="sheet" id="storeSheet"><div class="sheet-header"><h2 class="sheet-title">Select Store</h2><button class="sheet-close" onclick="closeStoreSelector()">×</button></div>${state.stores.map(s=>`<div class="store-item ${state.selectedStore?.id===s.id?'selected':''}" onclick="selectStore('${s.id}')"><div class="store-icon">🏪</div><div class="store-info"><div class="store-name">${s.name}</div><div class="store-address">${s.address}</div><div class="store-distance">${s.distance}</div></div></div>`).join('')}</div>
-      <div class="overlay" id="addressOverlay" onclick="closeAddressForm()"></div><div class="sheet" id="addressSheet"><div class="sheet-header"><h2 class="sheet-title">Delivery Address</h2><button class="sheet-close" onclick="closeAddressForm()">×</button></div><input type="text" class="address-input" id="addressInput" placeholder="Enter full address"><button class="save-btn" onclick="saveAddress()">Save</button></div>
-      <div class="overlay" id="modalOverlay" onclick="closeModal()"></div><div class="modal" id="modal"><div class="modal-icon" id="modalIcon"></div><h2 class="modal-title" id="modalTitle"></h2><div class="modal-text" id="modalText"></div><button class="modal-btn" onclick="closeModal()">OK</button><div style="height:100px"></div><div style="height:100px"></div></div>`;
+      <div class="overlay" id="addressOverlay" onclick="closeAddressForm()"></div><div class="sheet" id="addressSheet"><div class="sheet-header"><h2 class="sheet-title">Delivery Address</h2><button class="sheet-close" onclick="closeAddressForm()">×</button></div><input type="text" class="address-input" id="addressInput" placeholder="Enter full address" value="${state.deliveryAddress}"><button class="save-btn" onclick="saveAddress()">Save</button></div>
+      <div class="overlay" id="modalOverlay" onclick="closeModal()"></div><div class="modal" id="modal"><div class="modal-icon" id="modalIcon"></div><h2 class="modal-title" id="modalTitle"></h2><div class="modal-text" id="modalText"></div><button class="modal-btn" onclick="closeModal()">OK</button></div>`;
     }
 
     document.getElementById('loadingLogo').src = LOGO_BASE64;
